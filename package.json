@@ -1,0 +1,25 @@
+{
+  "name": "nodejs-upload-multiple-files",
+  "version": "1.0.0",
+  "description": "Multiple uploads, in nodejs",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.15.2",
+    "formidable": "^1.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonathanbrenman/nodejs-upload-multiple-files.git"
+  },
+  "author": "Jonathan Brenman",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jonathanbrenman/nodejs-upload-multiple-files/issues"
+  },
+  "homepage": "https://github.com/jonathanbrenman/nodejs-upload-multiple-files#readme"
+}
