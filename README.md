@@ -1,7 +1,7 @@
 # nodejs-upload-multiple-files
 Nodejs upload multiple files with express and formidable
 
-![alt text](https://github.com/jonathanbrenman/nodejs-upload-multiple-files/upload-demo.png)
+![alt text](https://github.com/jonathanbrenman/nodejs-upload-multiple-files/blob/master/upload-demo.png)
 
 1) Install nodejs
 2) Start server: node server.js (will start on port 3000)
