@@ -21,7 +21,7 @@ var port = process.env.PORT || 3000; // set our port
 // =============================================================================
 var routerApi = express.Router();
 var router    = express.Router(); 
-require('./routes/api.js')(app,routerApi);
+require('./routes/api.js')(app,routerApi,fs);
 require('./routes/client.js')(app,router,formidable,fs);
 
 
