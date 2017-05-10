@@ -14,7 +14,7 @@ module.exports = function(app, router, formidable, fs){
 		    file.path = 'uploads/' + file.name;
 		});
 		form.on('file', function (name, file){
-    		res.sendFile('success.html', { root: 'views/' });
+    		res.sendFile('welcome.html', { root: 'views/' });
 		});
 	    
 	});
