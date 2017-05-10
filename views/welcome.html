@@ -37,22 +37,25 @@
           position: absolute;
           left: 30px;
         }
+        .video-item{
+          cursor: pointer;          
+        }
     </style>
 </head>
 <body style="background: lightgrey">
   <div>
     <nav class="navbar navbar-inverse navbar-static-top" style="background: grey">
-    <div class="container col-lg-12">
-        <form action="fileupload" method="post" enctype="multipart/form-data" class="row">
-            <div class="col-lg-2">
-                <input id="upload-input" type="file" name="filetoupload" multiple="true" style="margin-top: 15px;">
-            </div>
-            <div class="col-lg-10">
-                <input id="btn-submit" class="btn btn-primary" type="submit" style="margin-top: 10px;">
-            </div>
-        </form>
-    </div>
-</nav>
+        <div class="container col-lg-12">
+            <form action="fileupload" method="post" enctype="multipart/form-data" class="row">
+                <div class="col-lg-2">
+                    <input id="upload-input" type="file" name="filetoupload" multiple="true" style="margin-top: 15px;">
+                </div>
+                <div class="col-lg-10">
+                    <input id="btn-submit" class="btn btn-primary" type="submit" style="margin-top: 10px;">
+                </div>
+            </form>
+        </div>
+    </nav>
     <div id="file-listing" class="col-lg-12"  style="padding:40px;">
         <h2 id="title">File list</h2>
         <div id="show-files">
@@ -67,6 +70,11 @@
         </div>
     </div>
   </div>
+    <div class="row">
+        <div id="video-iframe" class="text-center">
+            <iframe id="selected-video" style="width:400px; height:200px; margin-top: 50px; margin-bottom: 50px; background: black;border: none;" src=""></iframe>
+        </div>
+    </div>
   <script type="text/javascript">
     $(document).ready(function(){
         var settings = {
@@ -78,9 +86,15 @@
 
         $.ajax(settings).done(function (files) {
           $.each(files,function(index,value){
-            $('#files').append('<tr><td>'+value.thumb+' '+value.file+'</td><td>'+value.size+'</td><td>'+value.created_at+'</td><td>aqui va embed</td></tr>');
-          });
+                var embed = '&lt;iframe style=&quot;width:640px; height:480px;&quot; src=&quot;http://<server-url>/Uploads/'+value.file+'/embed.html?dvr=false&quot;&gt;&lt;/iframe&gt';
+                $('#files').append('<tr><td>'+value.thumb+' '+value.file+'</td><td>'+value.size+'</td><td>'+value.created_at+'</td><td><a class="video-item" data-url="'+value.file+'">'+embed+'</a></td></tr>');
+            });
+            $('.video-item').click(function(e){
+                var dataUrl = $(e.currentTarget).attr("data-url");
+                $('#selected-video').attr("src",'http://<server-url>/Uploads/'+dataUrl+'/embed.html?dvr=false');
+            });
         });
+
     });
   </script>
 </body>
