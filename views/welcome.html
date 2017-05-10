@@ -33,17 +33,21 @@
         tr:nth-child(even) {
             background-color: #dddddd;
         }
+        .container{
+          position: absolute;
+          left: 30px;
+        }
     </style>
 </head>
 <body style="background: lightgrey">
   <div>
     <nav class="navbar navbar-inverse navbar-static-top" style="background: grey">
-    <div class="container">
-        <form action="fileupload" method="post" enctype="multipart/form-data">
-            <div class="col-lg-3">
+    <div class="container col-lg-12">
+        <form action="fileupload" method="post" enctype="multipart/form-data" class="row">
+            <div class="col-lg-2">
                 <input id="upload-input" type="file" name="filetoupload" multiple="true" style="margin-top: 15px;">
             </div>
-            <div class="col-lg-9">
+            <div class="col-lg-10">
                 <input id="btn-submit" class="btn btn-primary" type="submit" style="margin-top: 10px;">
             </div>
         </form>
@@ -55,6 +59,8 @@
             <table id="files">
                 <tr>
                     <th>Name</th>
+                    <th>Size</th>
+                    <th>Created at</th>
                     <th>Embed</th>
                 </tr>
             </table>
@@ -72,7 +78,7 @@
 
         $.ajax(settings).done(function (files) {
           $.each(files,function(index,value){
-            $('#files').append('<tr><td>'+value.thumb+' '+value.file+'</td><td>aqui va embed</td></tr>');
+            $('#files').append('<tr><td>'+value.thumb+' '+value.file+'</td><td>'+value.size+'</td><td>'+value.created_at+'</td><td>aqui va embed</td></tr>');
           });
         });
     });

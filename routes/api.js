@@ -10,22 +10,22 @@ module.exports = function(app, routerApi, fs){
 			var files = new Array();
 		    for (var i=0; i<items.length; i++) {
 		    	var relative_path = __dirname + '/../uploads/'+ items[i];
-		    	var size;
-		    	var date;
+		    	var file_stat 	  = fs.statSync(relative_path);
+		    	var created_at    = new Date(file_stat.ctime);
+		    	created_at        = ("0" + created_at.getDate()).slice(-2)+'-'+("0" + (created_at.getMonth() + 1)).slice(-2)+'-'+created_at.getFullYear();
+		    	var size          = (file_stat.size / 1000000.0).toFixed(2);
+		    	size 			  = size + 'MB';
+		        
 		        files.push({
 		        	'thumb' 	 : '<i class="fa fa-file-video-o" aria-hidden="true"></i>',
-		        	'file'  	 : items[i]
+		        	'file'  	 : items[i],
+		        	'created_at' : created_at,
+		        	'size'       : size
 		        });
-		        /*fs.stat(relative_path,function(err, stats){
-		    		size = (stats.size / 1000000.0).toFixed(2);
-		    		size = size + 'MB';
-		    		date = stats.ctime;
-		    	});*/
 		    }
 	    	res.json(files);   
 		});
 	});
 	
-	//GET http://localhost:8080/api
 	app.use('/api/v1', routerApi);
 }
